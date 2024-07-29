@@ -1,23 +1,44 @@
-// Java program for random number generation
-import java.util.Random;
-
-
 public class SubBoss extends Enemy
 {
-  string
-  int healthPoints;
+  
+   public int healthPoints;
 
-
-  @Override
-  public void dealDamage() {
-  Random rand = new Random();
-  int rand_int1 = rand.nextInt(20);
-  if (rand_int1 < 9) 
-    {
-       this.damage =  5;
+    public SubBoss(String name, int healthPoints) {
+        super(name);
+        healthPoints = 300;
     }
-  else 
+    
+   
+    
+    public void setHealthPoints(int healthPoints)
     {
-        this.damage = 0;
+        this.healthPoints = healthPoints;
+    }
+
+  
+  
+
+    @Override
+    public int dealsDamage() 
     {
-}
+        
+        Random rand = new Random();
+    int rand_int1 = rand.nextInt(20);
+    if (rand_int1 < 9) 
+      {
+        return this.damage =  50;
+      }
+    else 
+      {
+         return this.damage = 0;
+      }
+    }
+    
+    @Override
+    public void takesDamage()
+    {
+        this.healthPoints -= this.damage;
+        
+    }
+
+ }
