@@ -7,9 +7,16 @@ public abstract class Enemy
   public Enemy(String name) 
   {
     this.mobName = name;
+    
   }  
+  
+  public void setName(String newName) {
+        this.mobName = newName;
+    }
+  
 
 
-public abstract void dealsDamage();
+public abstract int dealsDamage();
 
+public abstract void takesDamage();
 }
