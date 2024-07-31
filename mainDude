@@ -1,0 +1,60 @@
+package justanothertuesday;
+
+/**
+ *
+ * @author franc
+ */
+public class mainDude implements Heros {
+    private String name = "";
+    private int health;
+    private int dealDamage;
+    
+    public mainDude(String name){
+        this.name = name;
+        this.health = health =100;
+        this.dealDamage=dealDamage=50;
+    }
+    @Override
+    public void takesDamage(int amount){
+        this.health = getHealth() -amount;
+    }
+    @Override
+    public void powerUp(int amount){
+        this.dealDamage = getDealDamage() + amount;
+    }
+    public void addHealth(Boolean thing, int amount){
+        if(thing){
+            this.health += amount;
+        }
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the health
+     */
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * @return the dealDamage
+     */
+    public int getDealDamage() {
+        return dealDamage;
+    }
+    
+    
+}
