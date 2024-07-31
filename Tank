@@ -1,0 +1,53 @@
+package justanothertuesday;
+
+/**
+ *
+ * @author franc
+ */
+public class Tank implements Heros{
+    private final String name;
+    private int dealDamage;
+    private int health;
+    
+    public Tank(){
+        this.name = "Angelo";
+        this.dealDamage = 80;
+        this.health = 150;
+    }
+    //Takes damage from enemy
+    @Override
+    public void takesDamage(int amount){
+        this.health = this.getHealth() - amount;
+    }
+    //Adds to the damage a hero can deal
+    @Override
+    public void powerUp(int amount){
+        this.dealDamage = this.getDealDamage() + amount;
+    }
+    public void addHealth(Boolean thing, int amount){
+        if(thing){
+            this.health += amount;
+        }
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the dealDamage
+     */
+    public int getDealDamage() {
+        return dealDamage;
+    }
+
+    /**
+     * @return the health
+     */
+    public int getHealth() {
+        return health;
+    }
+}
