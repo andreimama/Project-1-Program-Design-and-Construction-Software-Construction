@@ -1,0 +1,12 @@
+package justanothertuesday;
+
+/**
+ *
+ * @author franc
+ */
+public interface Heros {
+    void takesDamage(int amount);
+    void powerUp(int amount);
+    void addHealth(Boolean thing, int amount);
+    
+}
