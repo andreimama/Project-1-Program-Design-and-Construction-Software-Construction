@@ -15,9 +15,14 @@ public class JustAnotherTuesday {
         Enemy subboss2 = new SubBoss("large bat", 300);
         
         System.out.println("Health Points of "+subboss2.mobName+""+subboss2.healthPoints);
-        subboss1.dealsDamage();
-        System.out.println(subboss1.mobName+" deals"+subboss1.dealsDamage());
-        System.out.println("");
+        subboss1.attack(subboss2);
+        System.out.println("attacks for"+subboss1.damage);
+        //System.out.println(subboss1.mobName+" deals"+subboss1.dealsDamage());
+        //System.out.println(""+subboss2.takesDamage());
+        //System.out.println("");
+        System.out.println("Health Points of "+subboss2.mobName+""+subboss2.healthPoints);
+        
+        
         
         
     }
