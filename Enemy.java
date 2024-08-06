@@ -1,12 +1,17 @@
+/**
+ *
+ * @author mamar
+ */
 public abstract class Enemy
 {
   public String mobName = "";
-  public int healthPoints = 0;
-  public int damage = 0;
+  public int healthPoints;
+  public int damage;
 
-  public Enemy(String name) 
+  public Enemy(String name, int healthPoints )
   {
     this.mobName = name;
+    this.healthPoints = healthPoints;
     
   }  
   
@@ -14,9 +19,15 @@ public abstract class Enemy
         this.mobName = newName;
     }
   
-
+  public void attack(Enemy target)
+  {
+      int damageDealt = this.dealsDamage();
+      
+      target.takesDamage(damageDealt);
+      
+  }
 
 public abstract int dealsDamage();
 
-public abstract void takesDamage();
+public abstract int takesDamage(int damage);
 }
