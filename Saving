@@ -1,5 +1,3 @@
-package justanothertuesday;
-
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,12 +11,13 @@ import java.io.FileWriter;
  */
 public class Saving {
 
+
     public String readSave() {
 
         String returnStr = null;
 
         try {
-            
+
             String line;
             BufferedReader inStream = new BufferedReader(new FileReader("GameSaving"));
             while ((line = inStream.readLine()) != null) {
@@ -32,7 +31,7 @@ public class Saving {
         return returnStr;
     }
 
-    public void writeSave(char prog) {
+    public void writeSave(int prog) {
         try {
             PrintWriter pw = null;
             pw = new PrintWriter(new FileWriter("GameSaving"));
