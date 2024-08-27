@@ -1,18 +1,15 @@
-package justanothertuesday;
-
-/**
- *
- * @author franc
- */
 public class mainDude implements Heros {
     private String name = "";
     private int health;
     private int dealDamage;
+    private int weapon;
+    private boolean armed = false;
     
-    public mainDude(String name){
+    public mainDude(String name,int dealDamage, int weapon){
         this.name = name;
         this.health = health =100;
-        this.dealDamage=dealDamage=50;
+        this.dealDamage=dealDamage;
+        this.weapon = weapon = 0;
     }
     @Override
     public void takesDamage(int amount){
@@ -21,6 +18,13 @@ public class mainDude implements Heros {
     @Override
     public void powerUp(int amount){
         this.dealDamage = getDealDamage() + amount;
+    }
+    public void getsWeapon(Boolean thing, int amount){
+        this.armed = true;
+        this.weapon = amount;
+    }
+    public int getWeapon(){
+        return this.weapon;
     }
     public void addHealth(Boolean thing, int amount){
         if(thing){
