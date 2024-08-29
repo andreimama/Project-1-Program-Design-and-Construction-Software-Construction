@@ -1,0 +1,69 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+/**
+ *
+ * @author franc
+ */
+public class GameLoader {
+    private Saving loader;
+    
+    public GameLoader(Saving loader){
+        this.loader = loader;
+    }
+    public int loadGameState(mainDude main,Medic medic,Stealth stealth,Tank tank){
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("GameSaving"));
+            int lastDesc = -1;
+            int lastMainDamage = 0;
+            int lastMainHealth = 0;
+            int lastMainWeapon = 0;
+            int lastStealthDamage = 0, lastStealthHealth = 0;
+            int lastMedicDamage = 0, lastMedicHealth = 0;
+            int lastTankDamage = 0, lastTankHealth = 0;
+            
+            String line;
+            
+            while((line = reader.readLine())!=null){
+                 lastDesc = Integer.parseInt(line);
+                lastMainDamage = Integer.parseInt(reader.readLine());
+                lastMainHealth = Integer.parseInt(reader.readLine());
+                lastMainWeapon = Integer.parseInt(reader.readLine());
+                lastStealthDamage = Integer.parseInt(reader.readLine());
+                lastStealthHealth = Integer.parseInt(reader.readLine());
+                lastMedicDamage = Integer.parseInt(reader.readLine());
+                lastMedicHealth = Integer.parseInt(reader.readLine());
+                lastTankDamage = Integer.parseInt(reader.readLine());
+                lastTankHealth = Integer.parseInt(reader.readLine());
+            }
+            
+            reader.close();
+            
+            if(lastDesc != -1){
+                main.setDealDamage(lastMainDamage);
+                main.setHealth(lastMainHealth);
+                main.setWeapon(lastMainWeapon);
+                stealth.setDealDamage(lastStealthDamage);
+                stealth.setHealth(lastStealthHealth);
+                medic.setDealDamage(lastMedicDamage);
+                medic.setHealth(lastMedicHealth);
+                tank.setDealDamage(lastTankDamage);
+                tank.setHealth(lastTankHealth);
+                
+                return lastDesc;
+            }
+            
+        }catch(FileNotFoundException e){
+            System.out.println("File not found");
+        }catch(IOException e){
+            System.out.println("Error reading the file");
+        }catch(NumberFormatException e){
+            System.out.println("File corrupted");
+        }
+        
+        return -1;
+    }
+}
