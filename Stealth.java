@@ -1,10 +1,13 @@
-package justanothertuesday;
+
+
+
 import java.util.Random;
+
 /**
  *
  * @author franc
  */
-public class Stealth implements Heros {
+public class Stealth implements Heroes {
     private final String name ;
     private int health;
     private int dealDamage;
@@ -22,16 +25,16 @@ public class Stealth implements Heros {
     public void powerUp(int amount){
         this.dealDamage = this.getDealDamage() + amount;
     }
-    public void criticalHit(){
+    public int criticalHit(){
         Random rand = new Random();
         int chance = rand.nextInt(20);
         if(chance<10){
-            dealDamage =80;
+            
+            return dealDamage + 50;
         }
-        else{
-            dealDamage = 80;
-        }
-    }
+        return dealDamage;
+        
+    } 
     public void addHealth(Boolean thing, int amount){
         if(thing){
             this.health += amount;
