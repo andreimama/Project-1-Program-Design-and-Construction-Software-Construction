@@ -1,17 +1,16 @@
-package justanothertuesday;
 
 /**
  *
  * @author franc
  */
-public class Tank implements Heros{
+public class Tank implements Heroes{
     private final String name;
     private int dealDamage;
     private int health;
     
     public Tank(){
         this.name = "Angelo";
-        this.dealDamage = 80;
+        this.dealDamage = 40;
         this.health = 150;
     }
     //Takes damage from enemy
