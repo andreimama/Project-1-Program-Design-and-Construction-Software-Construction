@@ -1,6 +1,4 @@
 
-package com.mycompany.justanothertuesday;
-
 /**
  *
  * @author franc
