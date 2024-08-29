@@ -1,10 +1,11 @@
-package justanothertuesday;
+
+package com.mycompany.justanothertuesday;
 
 /**
  *
  * @author franc
  */
-public class Medic implements Heros{
+public class Medic implements Heroes{
     private final String name;
     private int health;
     private int dealsDamage;
@@ -25,7 +26,7 @@ public class Medic implements Heros{
     public void addHealth(Boolean thing,int amount){
         this.health += amount;
     }
-    public void heal(Heros hero,int amount){
+    public void heal(Heroes hero,int amount){
         hero.addHealth(true,amount);
     }
     /**
