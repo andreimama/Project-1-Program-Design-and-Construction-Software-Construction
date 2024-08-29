@@ -1,0 +1,374 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author mamar
+ */
+public class Game {
+    private final Scanner scan;
+    private final GameSaver gameSaver;
+    private final mainDude main;
+    private final Medic medic;
+    private final Stealth stealth;
+    private final Tank tank;
+    private final SubBoss wormman;
+    private int desc;
+    private int choice;
+    
+    public Game(Scanner scan, GameSaver gameSaver) {
+        this.scan = scan;
+        this.gameSaver = gameSaver;
+        this.main = new mainDude("", 0, 100);
+        this.medic = new Medic();
+        this.stealth = new Stealth();
+        this.tank = new Tank();
+        this.wormman = new SubBoss("Worm Man", 100);
+        this.desc = 0;
+        this.choice = 0;
+    }
+    
+    public void start()
+    {
+        // this is just to highight what decision we are up to
+        
+        
+        System.out.println("WELCOME TO JUST ANOTHER TUESDAY !\nWould you like start a new game(1) or load a saved game(2)");
+        
+               try {
+            int menu = scan.nextInt();
+            if (menu == 1) {
+                desc = 1;
+            } else if (menu == 2) {
+               // #Here we implement another class to retrieve the saved game and catch the story up to where they were last time#
+            }
+            
+            //method that loads game state and changes desc to one in text file.
+            runGameLoop();
+        } catch (InputMismatchException e) {
+        }
+    }
+    
+    private void runGameLoop() {
+        /*while (true) makes it so that it checks whenever desc changes and proceeds
+        to next scenario*/
+        while (true) {
+            switch (desc) {
+                case 1:
+                    startNewGame();
+                    break;
+                case 2:
+                    scenarioTwo();
+                    break;
+                case 3:   
+                    scenarioThree();
+                    break;
+                case 4:
+                    scenarioFour();
+                    break;
+                
+                case -1:
+                    gameOver();
+            }
+        }
+    }   
+    
+    private void gameOver() {
+        System.out.println("\n\n\n You have lost, Game Over.");
+        System.out.println("Humanity laments your lost");
+        System.exit(0);
+    }
+    
+    private void startNewGame() {
+    String hold = "";
+    lineSeperator();
+     System.out.println("\nMysterious voice: wake up...wake up...WAKE UP. We need to get out of here !");
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("\nWhat's Your name ?");
+                while (true) {
+                    hold = scan.nextLine().trim();
+                    if (hold.matches("[a-zA-Z ]+")) {
+                        break;
+                    } else {
+                        System.out.println("Mysterious voice: Please enter a valid name: ");
+                    }
+                }
+
+                main.setName(hold);
+                try {
+                    System.out.println("Mysterious voice: Cmon " + main.getName() + " We need to get to a... Oh no look out !");
+                    Thread.sleep(2500);
+                    System.out.println("Infront of you approaching fast is some sort of half human, half alien.\nThere is a gun on the table next to you.\n");
+                    Thread.sleep(3200);
+                    System.out.println("What do you do?\n(1) Grab gun\n(2) Hide behind the mysterious person\nYou have 5 seconds before the monster attacks!");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+               
+                
+                
+                while (true) {
+                    try {
+                        if (scan.hasNextInt()) {
+                            choice = scan.nextInt();
+                            if (choice > 0 && choice <= 2) {
+                                break;
+                            } else {
+                                System.out.println("Please enter a valid choice: ");
+                            }
+                        }
+
+                    } catch (InputMismatchException e) {
+                    }
+                }
+                
+                switch (choice) {
+                    case 1:
+                        System.out.println("\nYou shoot the monster and it drops to the floor.\nYou check and the gun still has 2 bullets left");
+                        main.powerUp(50);
+                        main.getsWeapon(Boolean.TRUE, 2);
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 3;
+                        break;
+                    case 2:
+                        System.out.println("\nYou go to hide behind the mysterious person\nLuckily the stranger handles the beast...\nBut got injured in doing so...");
+                        medic.takesDamage(50);
+                        main.powerUp(20);
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 3;
+                        break;
+                }
+}
+    
+private void scenarioTwo() {
+            
+                try {
+                lineSeperator();
+                Thread.sleep(4000);
+                
+                System.out.println("Mysterious voice: That was close, come with me I'm a doctor and I can help you");
+                System.out.println("\nThe mysterious person explains that you have been asleep for 20 years and in that time the world" +
+                                   "\nwas overrun with a parasitic alien species from one of Jupiter's moons.");
+                Thread.sleep(4000);
+                System.out.println("\nMysterious voice: My name is Charity by the way. We are going to the FBI HeadQuarters where Angelo, the head can explain more...\n");
+                Thread.sleep(5000);
+                System.out.println(tank.getName() + ": Mumbling to himself over a map...Ah Charity, I see you've brought a guest !\n");
+                Thread.sleep(4000);
+                System.out.println(medic.getName() + ": This is " + main.getName() + ", I found him in the 69th quadrant he might be of some use.\n");
+                
+                Thread.sleep(4000);
+                System.out.println(tank.getName() + ": " + main.getName() + ", we need all the help we can get. Parasites are taking over Earth, and we have lost most of the population. \n");
+                Thread.sleep(4000);
+                System.out.println(main.getName() + ": Yep, why not?\n");    
+                Thread.sleep(4000);
+                System.out.println(tank.getName() + ": Great!. you've met our doctor Charity. I'm Angelo, the tank and the leader. Lets meet our final member and head out.\n");
+                
+                lineSeperator();
+                Thread.sleep(6000);
+                System.out.println("You reach a house of the final member, the house almost camoflauged with its environment. ");
+                Thread.sleep(3200);
+                System.out.println("What do you do?\n(1) Go through the back window?\n(2) Go through the front door\n");
+                Thread.sleep(3000);
+                
+                while (true) {
+                    try {
+                        if (scan.hasNextInt()) {
+                            choice = scan.nextInt();
+                            if (choice > 0 && choice <= 2) {
+                                break;
+                            } else {
+                                System.out.println("Please enter a valid choice: ");
+                            }
+                        }
+
+                    } catch (InputMismatchException e) {
+                    }
+                }
+                 switch (choice) {
+                    case 1:
+                        System.out.println("\nYou go through the backdoor, You see a person covered in black.\nYou catch him off guard and secretly gain his respect.");
+                        stealth.powerUp(10);
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 3;
+                        break;
+                    case 2:
+                        
+                        System.out.println("\nYou go through the front door and you trigger a spike trap and get hurt, but you see your final member.\n" + stealth.getName() +": Sorry 'bout the traps y'all, cant have aliens moseyin' on in here." + "\n-20 health");
+                        main.takesDamage(20);
+                        System.out.println(main.getHealth());
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 3;
+                        break;
+                }
+                
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            
+            }
+    }
+
+private void scenarioThree() {
+        try {
+                lineSeperator();
+                Thread.sleep(4500);
+                System.out.println(stealth.getName() + ": New member? Howdy I'm " + stealth.getName() + ", nice to meet ya. Even if we about to leave to attack the heart of them parasites, more folks is always a good thing.");
+                Thread.sleep(4500);
+                System.out.println(tank.getName()+": Good, we'll use the map to portal to go to jupiters moon where the parasite leader is.\n");
+                Thread.sleep(4000);
+                
+                System.out.println("You reach the end of the portal entrance and see a human with a worm for a head.");
+                System.out.println("Health of " + wormman.mobName + wormman.healthPoints);
+                System.out.println("\nWhat do you do\n (1) Get" + stealth.getName() +" to launch a Suprise attack(" + stealth.getDealDamage() +"dmg) with a Chance to crit (50%)" 
+                        + "\n (2) Launch a swing with all of your might (" + main.getDealDamage() + "dmg)"
+                        + "\n(3) Ignore worm man and Try sneak into the portal with the party ");
+                
+                
+                
+                while (true) {
+                    try {
+                        if (scan.hasNextInt()) {
+                            choice = scan.nextInt();
+                            if (choice > 0 && choice <= 3) {
+                                break;
+                            } else {
+                                System.out.println("Please enter a valid choice: ");
+                            }
+                        }
+
+                    } catch (InputMismatchException e) {
+                    }
+                }
+                 switch (choice) {
+                    case 1:
+                        System.out.println("\n");
+                        stealth.criticalHit();
+                        stealth.getDealDamage();
+                        System.out.println("Damage:" +stealth.getDealDamage());
+                        
+                        System.out.println("health of wormman: "+wormman.healthPoints);
+                        wormman.takesDamage(stealth.getDealDamage());
+                        System.out.println("health of wormman: "+wormman.healthPoints);
+                        
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 4;
+                        break;
+                    case 2:
+                        System.out.println(main.getHealth());
+                        System.out.println("health of wormman: "+wormman.healthPoints);
+                        wormman.takesDamage(main.getDealDamage());
+                        System.out.println("health of wormman: "+wormman.healthPoints);
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        desc = 4;
+                        break;
+                    case 3:
+                        System.out.println("\n" +tank.getName() + " steps on a branch, and the alien is alerted of your presence!");
+                        desc = 4;
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        break;
+                }
+                
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            
+            }
+    }
+
+private void scenarioFour() {
+    
+            int charge_up = 0;
+            while (wormman.healthPoints > 0 && charge_up != 2) {
+                try {
+                    System.out.println("\nWorm Man whips his head towards " + tank.getName() + " and deals (" + wormman.dealsDamage() +"dmg)");
+                    Thread.sleep(1000);
+                    
+                    System.out.println("\nHealth of "+ tank.getName()  +": " + tank.getHealth());
+                    Thread.sleep(1000);
+                    System.out.println("\n" + tank.getName() + "loses 30hp");
+                    Thread.sleep(1000);
+                    tank.takesDamage(wormman.dealsDamage());
+                    System.out.println("\n\nHealth of Tank: " + tank.getHealth());
+                    
+                    System.out.println("Health of " + wormman.mobName + wormman.healthPoints);
+                    System.out.println("\nWhat do you do\n(1) Have " + tank.getName() + " launch a heavy attack(" + tank.getDealDamage() + "dmg)"
+                        + "\n(2) Have " + stealth.getName() + " go for a normal attack(" + stealth.getDealDamage() + "dmg)"
+                        + "\n(3) Have " + medic.getName() +" Heal " + tank.getName() + " for 20HP");
+                
+                    while (true) {
+                    try {
+                        if (scan.hasNextInt()) {
+                            choice = scan.nextInt();
+                            if (choice > 0 && choice <= 3) {
+                                break;
+                            } else {
+                                System.out.println("Please enter a valid choice: ");
+                            }
+                        }
+
+                    } catch (InputMismatchException e) {
+                    }
+                }
+                
+                switch (choice) {
+                    case 1:
+                        System.out.println(tank.getName() +" attacks Worm man (" + tank.getDealDamage() + "dmg)");
+                        wormman.takesDamage(tank.getDealDamage());
+                        System.out.println("Health points of " + wormman.mobName +": " + wormman.healthPoints);
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        charge_up++;
+                        break;
+                    case 2:
+                        System.out.println(stealth.getName() + " attacks Worm man (" + stealth.getDealDamage() + "dmg)");
+                        wormman.takesDamage(stealth.getDealDamage());
+                        gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                        charge_up++;
+                        break;
+                    case 3:
+                        System.out.println(medic.getName() +" Heals " + tank.getName() + "for 20");
+                        System.out.println(tank.getHealth());
+                        tank.addHealth(Boolean.TRUE, 20);
+                        System.out.println(tank.getHealth());
+                        charge_up++;
+                        break;
+                }
+                
+                
+                    if (wormman.healthPoints <= 0) {
+                        desc = 5;
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } 
+                
+                if (charge_up == 2) {
+                    System.out.println(wormman.mobName + " Does a 360 backflip whip that deals 200 dmg to all members");
+                    desc = -1;
+                }
+                
+            
+                
+            }
+                
+                
+                
+}
+
+private void lineSeperator() {
+    System.out.println("###############################");
+}
+
+}
+
+
+    
