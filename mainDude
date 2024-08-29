@@ -1,4 +1,9 @@
-public class mainDude implements Heros {
+
+/**
+ *
+ * @author frank
+ */
+public class mainDude implements Heroes {
     private String name = "";
     private int health;
     private int dealDamage;
