@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.pdc.project1;
+
+
 import java.util.Random;
 
 /**
@@ -23,9 +20,9 @@ public class SubBoss extends Enemy
 
 
     @Override
-    public int dealsDamage() 
-    {
-        Random rand = new Random();
+    public int dealsDamage() {
+        return this.damage = 30;
+    /*   Random rand = new Random();
     int rand_int1 = rand.nextInt(20);
     if (rand_int1 < 9) 
       {
@@ -34,8 +31,8 @@ public class SubBoss extends Enemy
     else 
       {
          return this.damage = 0;
-      }
-    }
+      } */
+    } 
     
     @Override
     public int takesDamage(int damage)
@@ -46,5 +43,3 @@ public class SubBoss extends Enemy
     }
 
  }
-
-
