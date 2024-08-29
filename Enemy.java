@@ -1,8 +1,11 @@
+
+
 /**
  *
  * @author mamar
  */
-public abstract class Enemy
+
+    public abstract class Enemy
 {
   public String mobName = "";
   public int healthPoints;
@@ -30,4 +33,6 @@ public abstract class Enemy
 public abstract int dealsDamage();
 
 public abstract int takesDamage(int damage);
+   
 }
+
