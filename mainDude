@@ -1,7 +1,7 @@
 
 /**
  *
- * @author frank
+ * @author franc
  */
 public class mainDude implements Heroes {
     private String name = "";
