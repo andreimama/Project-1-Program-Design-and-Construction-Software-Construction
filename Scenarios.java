@@ -28,7 +28,7 @@ public class Scenarios {
     */
     public Scenarios(UserInteraction userInteraction, GameState gameState) {
         //Creating instances
-        this.main = new mainDude("", 0, 100);
+        this.main = new mainDude("", 0);
         this.medic = new Medic();
         this.stealth = new Stealth();
         this.tank = new Tank();
