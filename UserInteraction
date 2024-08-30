@@ -28,6 +28,7 @@ public class UserInteraction implements UserInterface{
     public void showGameOverWinMessage() {
         System.out.println("\n\n\n You have beaten the worm and close down the portal and Saved Humanity, Game Over.");
         System.out.println("Humanity celebrates your win!");
+        System.out.println("\"Its Just another Tuesday.\"");
         System.exit(0);
     }
     
