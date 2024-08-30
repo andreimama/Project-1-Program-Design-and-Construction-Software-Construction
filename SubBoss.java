@@ -1,4 +1,8 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
 
 import java.util.Random;
 
@@ -12,34 +16,22 @@ public class SubBoss extends Enemy
     {
         super(name, healthPoints);
     }
-    
-    public void setHealthPoints(int healthPoints)
-    {
-        this.healthPoints = healthPoints;
-    }
 
 
     @Override
     public int dealsDamage() {
-        return this.damage = 30;
-    /*   Random rand = new Random();
-    int rand_int1 = rand.nextInt(20);
-    if (rand_int1 < 9) 
-      {
-        return this.damage =  50;
-      }
-    else 
-      {
-         return this.damage = 0;
-      } */
+        return super.getDamage();
     } 
+    
+    
     
     @Override
     public int takesDamage(int damage)
     {
-        this.healthPoints -= damage;
-        return this.healthPoints;
-        
+        this.setHealth(this.getHealth() - damage);
+        return this.getHealth();
+     //this.healthPoints -=damage;
+     //return this.healthPoints
     }
 
  }
