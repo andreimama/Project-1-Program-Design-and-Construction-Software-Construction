@@ -10,21 +10,23 @@ import java.util.Random;
  *
  * @author mamar
  */
+//subclass of Enemy, this is inheritance
 public class SubBoss extends Enemy
 {
+    //Constructor for subboss
       public SubBoss(String name, int healthPoints) 
     {
         super(name, healthPoints);
     }
 
-
+      //deals get Damage, just returns for SubBoss, can be different for Boss class if added
     @Override
     public int dealsDamage() {
-        return super.getDamage();
+        return getDamage();
     } 
     
     
-    
+    //Method to decrease health by damage amount
     @Override
     public int takesDamage(int damage)
     {
