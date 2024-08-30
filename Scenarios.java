@@ -19,7 +19,9 @@ public class Scenarios {
     private Tank tank;
     private SubBoss wormman;
     private GameSaver gameSaver;
+    private GameLoader gameLoader;
     private InputHandler inputHandler;
+    private Saving saving;
     
     /*Scenarios uses gamestate to determine what part of the game to run
     and usesInterface to interact with user(print msg)
@@ -35,6 +37,11 @@ public class Scenarios {
         this.inputHandler = new InputHandler();
         this.userInteraction = userInteraction;
         this.gameState = gameState;
+        
+        //instantiante saving, GameSaver, the GameLoader
+        this.saving = new Saving();
+        this.gameSaver = new GameSaver(saving);
+        this.gameLoader = new GameLoader(saving);
     }
     
     
@@ -53,7 +60,7 @@ public class Scenarios {
                     main.powerUp(30);
                     main.getsWeapon(Boolean.TRUE, choice);
                     gameState.setDesc(3);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
 
                 } else if (choice == 2) {
                     userInteraction.showMessagePlusDelay(userInteraction.getScenario1Case2(),1000);
@@ -104,7 +111,7 @@ public class Scenarios {
         userInteraction.showMessagePlusDelay(tank.getName() + ": Good, we'll use the map to portal to go to jupiters moon where the parasite leader is.\n", 4000);
         userInteraction.showMessagePlusDelay("You reach the end of the portal entrance and see a human with a worm for a head.", 2000);
         
-        userInteraction.showMessagePlusDelay("\nHealth of " + wormman.mobName +": " + wormman.healthPoints, 2000);
+        userInteraction.showMessagePlusDelay("\nHealth of " + wormman.getName() +": " + wormman.getHealth(), 2000);
         
         int attackifCrit = stealth.getDealDamage() + 15;
         int choice = inputHandler.getInt("\nWhat do you do\n(1) Get " + stealth.getName() + " to launch a Suprise attack(" + stealth.getDealDamage() + "dmg) with a Chance to crit (30% chance - " + attackifCrit + "dmg)"
@@ -121,7 +128,7 @@ public class Scenarios {
                     //criticalHit calculates if damage is a crit or not, then wormman takes damage.
                     int ifCrit = stealth.criticalHit();
                     wormman.takesDamage(ifCrit);
-                    String case1msg = userInteraction.getPrintAttack(stealth.getName(), ifCrit, wormman.healthPoints, wormman.mobName);
+                    String case1msg = userInteraction.getPrintAttack(stealth.getName(), ifCrit, wormman.getHealth(), wormman.getName());
                     userInteraction.showMessagePlusDelay(case1msg, 1000);
                     gameState.setDesc(4);
                     
@@ -131,7 +138,7 @@ public class Scenarios {
             case 2:
                     
                     wormman.takesDamage(main.getDealDamage());
-                    String case2msg = userInteraction.getPrintAttack(main.getName(), main.getDealDamage(), wormman.healthPoints, wormman.mobName);
+                    String case2msg = userInteraction.getPrintAttack(main.getName(), main.getDealDamage(), wormman.getHealth(), wormman.getName());
                     userInteraction.showMessagePlusDelay(case2msg, 1000);
                     gameState.setDesc(4);
                     //gameSaver.saveGameState(desc, main, medic, stealth, tank);
@@ -150,14 +157,14 @@ public class Scenarios {
     
     public void scenarioFour() {
         int charge_up = 0;
-        while (wormman.healthPoints > 0 && charge_up != 3) {
+        while (wormman.getHealth() > 0 && charge_up != 3) {
                     userInteraction.showMessagePlusDelay("\nWorm Man whips his head towards " + tank.getName() + " and deals (" + wormman.dealsDamage() +"dmg)", 1000);
                     
                     userInteraction.showMessagePlusDelay("\nHealth of "+ tank.getName()  +": " + tank.getHealth(), 1000);
                     tank.takesDamage(wormman.dealsDamage());
                     userInteraction.showMessagePlusDelay("\nHealth of "+ tank.getName()  +": " + tank.getHealth(), 1000);
                     
-                    userInteraction.showMessagePlusDelay("\nHealth of " + wormman.mobName +": " + wormman.healthPoints, 2000);
+                    userInteraction.showMessagePlusDelay("\nHealth of " + wormman.getName() +": " + wormman.getHealth(), 2000);
                     
                     //userInteraction.sho);
                             
@@ -170,7 +177,7 @@ public class Scenarios {
                     //
                 
                     wormman.takesDamage(tank.getDealDamage());
-                    String case1msg = userInteraction.getPrintAttack(tank.getName(), tank.getDealDamage(), wormman.healthPoints, wormman.mobName);
+                    String case1msg = userInteraction.getPrintAttack(tank.getName(), tank.getDealDamage(), wormman.getHealth(), wormman.getName());
                     userInteraction.showMessagePlusDelay(case1msg, 1000);
                     gameState.setDesc(4);
                     charge_up++;
@@ -180,7 +187,7 @@ public class Scenarios {
             case 2:
                     
                     wormman.takesDamage(main.getDealDamage());
-                    String case2msg = userInteraction.getPrintAttack(main.getName(), main.getDealDamage(), wormman.healthPoints, wormman.mobName);
+                    String case2msg = userInteraction.getPrintAttack(main.getName(), main.getDealDamage(), wormman.getHealth(), wormman.getName());
                     userInteraction.showMessagePlusDelay(case2msg, 1000);
                     gameState.setDesc(4);
                     //gameSaver.saveGameState(desc, main, medic, stealth, tank);
@@ -196,12 +203,11 @@ public class Scenarios {
                     charge_up++;
                     break;
             }
-        }if (wormman.healthPoints <= 0) {
+        }if (wormman.getHealth() <= 0) {
             gameState.setDesc(5);
             
-        }
-            if (charge_up == 3) {
-            userInteraction.showMessagePlusDelay("\n\n" +wormman.mobName + " Does a 360 triple backflip whip that deals instantly kills all members",0);
+        } else if (charge_up == 3) {
+            userInteraction.showMessagePlusDelay("\n\n" +wormman.getName() + " Does a 360 triple backflip whip that deals instantly kills all members",0);
             gameState.setDesc(-1);
 
         }
