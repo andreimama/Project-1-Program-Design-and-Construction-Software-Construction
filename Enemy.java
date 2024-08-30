@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.justanothertuesday;
 
 /**
@@ -23,13 +26,6 @@ package com.mycompany.justanothertuesday;
         this.mobName = newName;
     }
   
-  public void attack(Enemy target)
-  {
-      int damageDealt = this.dealsDamage();
-      
-      target.takesDamage(damageDealt);
-      
-  }
 
 public abstract int dealsDamage();
 
