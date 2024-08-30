@@ -15,11 +15,11 @@ public class mainDude implements Heroes {
    // private int weapon;
    // private boolean armed = false;
     
-    public mainDude(String name,int dealDamage, int weapon){
+    public mainDude(String name,int dealDamage){
         this.name = name;
         this.health = health =100;
         this.dealDamage=dealDamage;
-        this.weapon = weapon = 0;
+       // this.weapon = weapon = 0;
     }
     @Override
     public void takesDamage(int amount){
