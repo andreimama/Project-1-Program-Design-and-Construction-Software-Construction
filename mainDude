@@ -12,8 +12,8 @@ public class mainDude implements Heroes {
     private String name = "";
     private int health;
     private int dealDamage;
-    private int weapon;
-    private boolean armed = false;
+   // private int weapon;
+   // private boolean armed = false;
     
     public mainDude(String name,int dealDamage, int weapon){
         this.name = name;
