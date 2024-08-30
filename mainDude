@@ -1,3 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
 
 /**
  *
@@ -20,47 +25,51 @@ public class mainDude implements Heroes {
     public void takesDamage(int amount){
         this.health = getHealth() -amount;
     }
+    
     @Override
     public void powerUp(int amount){
         this.dealDamage = getDealDamage() + amount;
     }
-    public void getsWeapon(Boolean thing, int amount){
+    /*public void getsWeapon(Boolean thing, int amount){
         this.armed = true;
         this.weapon = amount;
     }
     public int getWeapon(){
         return this.weapon;
-    }
+    } */
+    
+    @Override
     public void addHealth(Boolean thing, int amount){
         if(thing){
             this.health += amount;
         }
     }
+    @Override
+    public void setHealth(int Health) {
+        this.health = Health;
+    }
+    
+    @Override
+    public void setDealDamage(int damage) {
+        this.dealDamage = damage;
+    }
 
-    /**
-     * @return the name
-     */
+    //returns name
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
+    //sets name
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the health
-     */
+    //returns the health
     public int getHealth() {
         return health;
     }
 
-    /**
-     * @return the dealDamage
-     */
+    //returns damage
     public int getDealDamage() {
         return dealDamage;
     }
