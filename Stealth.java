@@ -1,5 +1,5 @@
 
-
+package com.mycompany.justanothertuesday;
 
 import java.util.Random;
 
@@ -28,11 +28,12 @@ public class Stealth implements Heroes {
     public int criticalHit(){
         Random rand = new Random();
         int chance = rand.nextInt(20);
-        if(chance<10){
+        //40% chance to deal a bonus 15 dmg
+        if(chance<8){
             
-            return dealDamage + 50;
+            return this.dealDamage += 15;
         }
-        return dealDamage;
+        return this.dealDamage;
         
     } 
     public void addHealth(Boolean thing, int amount){
