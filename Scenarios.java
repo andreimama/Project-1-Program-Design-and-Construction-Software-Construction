@@ -11,17 +11,17 @@ package com.mycompany.justanothertuesday;
 
 public class Scenarios {
 //This is encapsulation, uses private fields to hide details, (public methods are in the class so it can be interactable)
-    private UserInteraction userInteraction;
-    private GameState gameState;
-    private Heroes main;
-    private Heroes medic;
-    private Heroes stealth;
-    private Heroes tank;
-    private Enemy wormman;
-    private GameSaver gameSaver;
-    private GameLoader gameLoader;
-    private InputHandler inputHandler;
-    private Saving saving;
+    private final UserInteraction userInteraction;
+    private final GameState gameState;
+    private final mainDude main;
+    private final Medic medic;
+    private final Stealth stealth;
+    private final Tank tank;
+    private final Enemy wormman;
+    private final GameSaver gameSaver;
+    private final GameLoader gameLoader;
+    private final InputHandler inputHandler;
+    private final Saving saving;
      
     /*Scenarios uses gamestate to determine what part of the game to run
     and usesInterface to interact with user(print msg)
@@ -68,7 +68,7 @@ public class Scenarios {
                     main.powerUp(30);
                     //Goes to next scenario (20
                     gameState.setDesc(2);
-                    //gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
 
                 } else if (choice == 2) {
                     userInteraction.showMessagePlusDelay(userInteraction.getScenario1Case2(),1000);
@@ -78,7 +78,7 @@ public class Scenarios {
                     main.powerUp(30);
                     //Goes to next scenario (2)
                     gameState.setDesc(2);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                 }
     }
 
@@ -105,7 +105,7 @@ public class Scenarios {
                     main.powerUp(10);
                     //Goes to the next scenario (3)
                     gameState.setDesc(3);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
 
             case 2:
@@ -116,7 +116,7 @@ public class Scenarios {
                     main.powerUp(10);
                     //Goes to next scenario (3)
                     gameState.setDesc(3);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
                 }
         //userInteraction.showMessagePlusDelay();
@@ -158,7 +158,7 @@ public class Scenarios {
                     userInteraction.showMessagePlusDelay(case1msg, 1000);
                     //Goes to next Scenario
                     gameState.setDesc(4);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
             
             case 2:
@@ -168,14 +168,14 @@ public class Scenarios {
                     userInteraction.showMessagePlusDelay(case2msg, 1000);
                     //Goes to next Scenario
                     gameState.setDesc(4);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
             case 3:
                     //Prints out msg that Alien sees you and goes to next Scenario
                     String case3msg = userInteraction.getScenario3Case3(medic.getName());
                     userInteraction.showMessagePlusDelay(case3msg, 1000);
                     gameState.setDesc(4);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
             }
     
@@ -215,7 +215,7 @@ public class Scenarios {
                     //repeats scenario
                     gameState.setDesc(4);
                     charge_up++;
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     break;
             
             case 2:
@@ -225,7 +225,7 @@ public class Scenarios {
                     userInteraction.showMessagePlusDelay(case2msg, 1000);
                     //repeats scenario
                     gameState.setDesc(4);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     charge_up++;
                     break;
             case 3:
@@ -235,7 +235,7 @@ public class Scenarios {
                     userInteraction.showMessagePlusDelay(case3msg, 1000);
                     //repeats scenario
                     gameState.setDesc(4);
-                    //gameSaver.saveGameState(desc, main, medic, stealth, tank);
+                    gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
                     charge_up++;
                     break;
             }
@@ -262,5 +262,9 @@ public class Scenarios {
     public void scenarioWin() {
         gameState.setGameOver(Boolean.TRUE);
         userInteraction.showGameOverWinMessage();
+    }
+    //Loading game
+    public void loadGame(){
+        gameState.setDesc(gameLoader.loadGameState(main, medic, stealth, tank));
     }
 }
