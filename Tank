@@ -1,10 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
 
 /**
  *
  * @author franc
  */
 public class Tank implements Heroes{
-    private final String name;
+    private String name;
     private int dealDamage;
     private int health;
     
@@ -23,25 +28,33 @@ public class Tank implements Heroes{
     public void powerUp(int amount){
         this.dealDamage = this.getDealDamage() + amount;
     }
+    @Override
     public void addHealth(Boolean thing, int amount){
         if(thing){
             this.health += amount;
         }
     }
-
-    /**
-     * @return the name
-     */
+    @Override
+    public void setHealth(int Health) {
+        this.health = Health;
+    }
+    
+    @Override
+    public void setDealDamage(int damage) {
+        this.dealDamage = damage;
+    }
+   
+    @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * @return the dealDamage
-     */
+    @Override
     public int getDealDamage() {
         return dealDamage;
     }
+    
+    
 
     /**
      * @return the health
@@ -49,4 +62,6 @@ public class Tank implements Heroes{
     public int getHealth() {
         return health;
     }
+    
+    
 }
