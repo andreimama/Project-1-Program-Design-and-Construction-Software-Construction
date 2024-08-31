@@ -5,20 +5,20 @@
 package com.mycompany.justanothertuesday;
 
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 /**
  *
- * @author mamar
+ * @author franc
  */
 public class JustAnotherTuesday {
 
 
   public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
-    Game game = new Game(scan, new GameSaver(new Saving()));
+      //creates a new instance of Game class
+    Game game = new Game();
+    
+    //starts game through calling start method
     game.start();
     }
-
+    
 }
+    
