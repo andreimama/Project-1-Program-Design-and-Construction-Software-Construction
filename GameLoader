@@ -1,69 +1,57 @@
-import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.FileWriter;
-/**
- *
- * @author franc
- */
+import java.util.LinkedList;
+
 public class GameLoader {
     private Saving loader;
-    
-    public GameLoader(Saving loader){
+
+    public GameLoader(Saving loader) {
         this.loader = loader;
     }
-    public int loadGameState(mainDude main,Medic medic,Stealth stealth,Tank tank){
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("GameSaving"));
-            int lastDesc = -1;
-            int lastMainDamage = 0;
-            int lastMainHealth = 0;
-            int lastMainWeapon = 0;
-            int lastStealthDamage = 0, lastStealthHealth = 0;
-            int lastMedicDamage = 0, lastMedicHealth = 0;
-            int lastTankDamage = 0, lastTankHealth = 0;
-            
+
+    public int loadGameState(mainDude main, Medic medic, Stealth stealth, Tank tank) {
+        LinkedList<String> lastLines = new LinkedList<>(); //Linked list used to ensure only the last 9 lines are read to load the old game
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("GameSaving"))) {
             String line;
-            
-            while((line = reader.readLine())!=null){
-                 lastDesc = Integer.parseInt(line);
-                lastMainDamage = Integer.parseInt(reader.readLine());
-                lastMainHealth = Integer.parseInt(reader.readLine());
-                lastMainWeapon = Integer.parseInt(reader.readLine());
-                lastStealthDamage = Integer.parseInt(reader.readLine());
-                lastStealthHealth = Integer.parseInt(reader.readLine());
-                lastMedicDamage = Integer.parseInt(reader.readLine());
-                lastMedicHealth = Integer.parseInt(reader.readLine());
-                lastTankDamage = Integer.parseInt(reader.readLine());
-                lastTankHealth = Integer.parseInt(reader.readLine());
+
+            // Read the entire text file and store only the last 9 lines
+            while ((line = reader.readLine()) != null) {
+                if (lastLines.size() == 9) {
+                    lastLines.poll();
+                }
+                lastLines.add(line);
             }
-            
-            reader.close();
-            
-            if(lastDesc != -1){
-                main.setDealDamage(lastMainDamage);
-                main.setHealth(lastMainHealth);
-                main.setWeapon(lastMainWeapon);
-                stealth.setDealDamage(lastStealthDamage);
-                stealth.setHealth(lastStealthHealth);
-                medic.setDealDamage(lastMedicDamage);
-                medic.setHealth(lastMedicHealth);
-                tank.setDealDamage(lastTankDamage);
-                tank.setHealth(lastTankHealth);
-                
-                return lastDesc;
+
+            // Once we have the last 9 lines, parse them to set up the game state
+            if (lastLines.size() == 9) {
+                int lastDesc = Integer.parseInt(lastLines.get(0));
+                String mainName = lastLines.get(1);
+                int mainDamage = Integer.parseInt(lastLines.get(2));
+                int mainHealth = Integer.parseInt(lastLines.get(3));
+                int stealthDamage = Integer.parseInt(lastLines.get(4));
+                int stealthHealth = Integer.parseInt(lastLines.get(5));
+                int medicHealth = Integer.parseInt(lastLines.get(6));
+                int tankDamage = Integer.parseInt(lastLines.get(7));
+                int tankHealth = Integer.parseInt(lastLines.get(8));
+
+                // Load each character
+                main.setName(mainName);
+                main.setDealDamage(mainDamage);
+                main.setHealth(mainHealth);
+                stealth.setDealDamage(stealthDamage);
+                stealth.setHealth(stealthHealth);
+                medic.setHealth(medicHealth);
+                tank.setDealDamage(tankDamage);
+                tank.setHealth(tankHealth);
+
+                return lastDesc;  // Return the last descision for resuming the game
             }
-            
-        }catch(FileNotFoundException e){
-            System.out.println("File not found");
-        }catch(IOException e){
-            System.out.println("Error reading the file");
-        }catch(NumberFormatException e){
-            System.out.println("File corrupted");
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error loading game: " + e.getMessage());
         }
-        
-        return -1;
+
+        return -1;  // Return -1 if loading fails
     }
 }
