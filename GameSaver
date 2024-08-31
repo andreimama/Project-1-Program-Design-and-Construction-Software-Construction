@@ -5,7 +5,7 @@ package justanothertuesday;
  * @author franc
  */
 public class GameSaver {
-    private Saving saver;  // Assuming `Saver` is a class handling the writing process
+    private Saving saver;
 
     public GameSaver(Saving saver) {
         this.saver = saver;
@@ -13,12 +13,11 @@ public class GameSaver {
 
     public void saveGameState(int desc, mainDude main, Medic medic, Stealth stealth, Tank tank) {
         saver.writeSave(desc);
+        saver.writeSave(main.getName());
         saver.writeSave(main.getDealDamage());
         saver.writeSave(main.getHealth());
-        saver.writeSave(main.getWeapon());
         saver.writeSave(stealth.getDealDamage());
         saver.writeSave(stealth.getHealth());
-        saver.writeSave(medic.getDealsDamage());
         saver.writeSave(medic.getHealth());
         saver.writeSave(tank.getDealDamage());
         saver.writeSave(tank.getHealth());
