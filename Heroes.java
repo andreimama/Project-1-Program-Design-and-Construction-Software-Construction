@@ -1,4 +1,8 @@
-package justanothertuesday;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
 
 /**
  *
@@ -10,6 +14,7 @@ public interface Heroes {
     void powerUp(int amount);
     void addHealth(Boolean thing, int amount);
     void setHealth(int health);
-    void setDamage(int damage);
-    
+    void setDealDamage(int damage);
+    int getDealDamage();
+    String getName();
 }
