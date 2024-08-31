@@ -59,11 +59,13 @@ public class mainDude implements Heroes {
     }
 
     //returns name
+    @Override
     public String getName() {
         return name;
     }
 
     //sets name
+    
     public void setName(String name) {
         this.name = name;
     }
