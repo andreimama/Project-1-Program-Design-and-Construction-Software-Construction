@@ -37,7 +37,7 @@ public class Game {
                 if (choice == 1) {
                     gameState.setDesc(1);
                 } else if (choice == 2) {
-                //    gameLoader.loadGameState(scenarios.getMain(), medic, stealth, tank);
+                    scenarios.loadGame();
                  }
                 
                 runGameLoop();
@@ -47,6 +47,8 @@ public class Game {
     private void runGameLoop() {
         /*while (true) makes it so that it checks whenever desc changes and proceeds
         to next scenario*/
+        
+        GameSaver saver = new GameSaver(new Saving());
         while (true) {
             switch (gameState.getDesc()) {
                 case 1:
