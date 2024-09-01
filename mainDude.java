@@ -6,7 +6,7 @@ package com.mycompany.justanothertuesday;
 
 /**
  *
- * @author franc
+ * @author mamar
  */
 public class mainDude implements Heroes {
     private String name = "";
@@ -31,14 +31,7 @@ public class mainDude implements Heroes {
     public void powerUp(int amount){
         this.dealDamage = getDealDamage() + amount;
     }
-    /*public void getsWeapon(Boolean thing, int amount){
-        this.armed = true;
-        this.weapon = amount;
-    }
-    public int getWeapon(){
-        return this.weapon;
-    } */
-    
+  
     //adds health of mainDude
     @Override
     public void addHealth(Boolean thing, int amount){
@@ -71,11 +64,13 @@ public class mainDude implements Heroes {
     }
 
     //returns the health
+    @Override
     public int getHealth() {
         return health;
     }
 
     //returns damage
+    @Override
     public int getDealDamage() {
         return dealDamage;
     }
