@@ -13,10 +13,10 @@ public class Scenarios {
 //This is encapsulation, uses private fields to hide details, (public methods are in the class so it can be interactable)
     private final UserInteraction userInteraction;
     private final GameState gameState;
-    private final mainDude main;
-    private final Medic medic;
-    private final Stealth stealth;
-    private final Tank tank;
+    private final Heroes main;
+    private final Heroes medic;
+    private final Heroes stealth;
+    private final Heroes tank;
     private final Enemy wormman;
     private final GameSaver gameSaver;
     private final GameLoader gameLoader;
@@ -56,12 +56,14 @@ public class Scenarios {
                 //name inputed is set as the main characters name
                 ((mainDude) main).setName(name);
                 
+                
                 userInteraction.showMessagePlusDelay("Mysterious voice: Cmon " + main.getName() + " We need to get to a... Oh no look out!\n", 1500);
                 userInteraction.showMessagePlusDelay("Infront of you approaching fast is some sort of half human, half alien.\nThere is a gun on the table next to you.\n", 2000);
                 
                 //asks question and asks for input
                 int choice = inputHandler.getInt("What do you do?\n(1) Grab gun\n(2) Hide behind the mysterious person\n", 1, 2);
-                if (choice == 1) {
+                switch (choice) {
+                    case 1:
                     //shows message of particular choice
                     userInteraction.showMessagePlusDelay(userInteraction.getScenario1Case1(),1000);
                     //main character has +30 added to his damage
@@ -69,8 +71,9 @@ public class Scenarios {
                     //Goes to next scenario (20
                     gameState.setDesc(2);
                     gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
+                    break;
 
-                } else if (choice == 2) {
+                    case 2:
                     userInteraction.showMessagePlusDelay(userInteraction.getScenario1Case2(),1000);
                     //medics health is decreased by 40
                     medic.takesDamage(40);
@@ -79,6 +82,7 @@ public class Scenarios {
                     //Goes to next scenario (2)
                     gameState.setDesc(2);
                     gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
+                    break;
                 }
     }
 
@@ -242,6 +246,7 @@ public class Scenarios {
         //Once wormman reaches 0 go to scenario 5 which is GameOver and a win            
         }if (wormman.getHealth() <= 0) {
             gameState.setDesc(5);
+            gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
             
         } 
         /*if not 0 check if charge_up is 3 then prints statement of attack
@@ -249,6 +254,7 @@ public class Scenarios {
         else if (charge_up == 3) {
             userInteraction.showMessagePlusDelay("\n\n" +wormman.getName() + " Does a 360 triple backflip whip that deals instantly kills all members",0);
             gameState.setDesc(-1);
+            gameSaver.saveGameState(gameState.getDesc(), main, medic, stealth, tank);
 
         }
    
@@ -257,6 +263,7 @@ public class Scenarios {
     public void scenarioLose() {
         gameState.setGameOver(Boolean.TRUE);
         userInteraction.showGameOverLoseMessage();
+        
     }
     //if desc is -1 it goes here
     public void scenarioWin() {
@@ -267,4 +274,6 @@ public class Scenarios {
     public void loadGame(){
         gameState.setDesc(gameLoader.loadGameState(main, medic, stealth, tank));
     }
+    
+    
 }
