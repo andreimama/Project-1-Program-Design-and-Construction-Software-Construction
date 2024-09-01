@@ -68,6 +68,7 @@ public class Medic implements Heroes{
     
     
     //gets health
+    @Override
     public int getHealth() {
         return health;
     }
