@@ -7,7 +7,7 @@ package com.mycompany.justanothertuesday;
 
 /**
  *
- * @author franc
+ * @author mamar
  */
 public class JustAnotherTuesday {
 
