@@ -1,7 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.justanothertuesday;
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
+
+/**
+ *
+ * @author franc
+ */
 
 public class GameLoader {
     private Saving loader;
@@ -10,7 +22,7 @@ public class GameLoader {
         this.loader = loader;
     }
 
-    public int loadGameState(mainDude main, Medic medic, Stealth stealth, Tank tank) {
+    public int loadGameState(Heroes main, Heroes medic, Heroes stealth, Heroes tank) {
         LinkedList<String> lastLines = new LinkedList<>(); //Linked list used to ensure only the last 9 lines are read to load the old game
 
         try (BufferedReader reader = new BufferedReader(new FileReader("GameSaving"))) {
@@ -37,7 +49,7 @@ public class GameLoader {
                 int tankHealth = Integer.parseInt(lastLines.get(8));
 
                 // Load each character
-                main.setName(mainName);
+                ((mainDude) main).setName(mainName);
                 main.setDealDamage(mainDamage);
                 main.setHealth(mainHealth);
                 stealth.setDealDamage(stealthDamage);
@@ -54,4 +66,4 @@ public class GameLoader {
 
         return -1;  // Return -1 if loading fails
     }
-}
+} 
