@@ -16,5 +16,7 @@ public interface Heroes {
     void setHealth(int health);
     void setDealDamage(int damage);
     int getDealDamage();
+    int getHealth();
     String getName();
+    
 }
