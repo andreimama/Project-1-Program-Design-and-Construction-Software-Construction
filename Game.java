@@ -4,22 +4,22 @@
  */
 package com.mycompany.justanothertuesday;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
 
 /**
  *
  * @author mamar
  */
+//this class manages the game.
 public class Game {
-    
+    //Private fields for game components
     private GameState gameState;
     private UserInteraction userInteraction;
     private Scenarios scenarios;
     private InputHandler inputHandler;
     private GameLoader gameLoader;
     
-    
+    //Constructor initalizing the fields
     public Game() {
         this.gameState = new GameState();
         this.userInteraction = new UserInteraction();
@@ -37,7 +37,7 @@ public class Game {
                 if (choice == 1) {
                     gameState.setDesc(1);
                 } else if (choice == 2) {
-                    scenarios.loadGame();
+                scenarios.loadGame();
                  }
                 
                 runGameLoop();
@@ -47,8 +47,6 @@ public class Game {
     private void runGameLoop() {
         /*while (true) makes it so that it checks whenever desc changes and proceeds
         to next scenario*/
-        
-        GameSaver saver = new GameSaver(new Saving());
         while (true) {
             switch (gameState.getDesc()) {
                 case 1:
