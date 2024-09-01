@@ -74,6 +74,7 @@ public class Stealth implements Heroes {
     } 
 
     //gets and returns health
+    @Override
     public int getHealth() {
         return health;
     }
