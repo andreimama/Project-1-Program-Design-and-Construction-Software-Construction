@@ -55,10 +55,7 @@ public class Tank implements Heroes{
     }
     
     
-
-    /**
-     * @return the health
-     */
+    @Override
     public int getHealth() {
         return health;
     }
