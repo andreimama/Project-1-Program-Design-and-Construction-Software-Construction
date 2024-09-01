@@ -23,7 +23,7 @@ public class InputHandler {
         this.scanner = new Scanner(System.in);
     }
     
-    //method that finds an integer input
+    //method that finds an integer and validate integer input
     public int getInt(String message, int min, int max) {
         
         //variable for user input
@@ -53,7 +53,7 @@ public class InputHandler {
         }
         return input;
     }
-
+    //method that finds and validates string input
     public String getStringInput() {
         String hold;
         while (true) {
